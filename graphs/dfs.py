@@ -8,12 +8,9 @@ For example, identifying components: https://youtu.be/7fujbpJ0LB4
 
 """
 
+from graphs import G1 as graph
 
-graph = [
-    [1],
-    [2],
-    [1]
-]
+
 visited = [False] * len(graph)
 
 def dfs_recursive(at):
