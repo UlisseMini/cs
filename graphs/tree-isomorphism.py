@@ -19,15 +19,14 @@ def center(graph):
 
     leaves = []
     n = len(graph)
+    degree = [len(adj) for adj in graph]
 
     # get initial leaf nodes
     for node in range(n):
-        if len(graph[node]) <= 1:
+        if degree[node] <= 1:
             # no neighbors or 1 neighbor, we're a leaf
             leaves.append(node)
 
-
-    neighbors = [len(adj) for adj in graph]
 
     done = len(leaves)
     while done < n:
@@ -36,8 +35,8 @@ def center(graph):
         for node in leaves:
             for neighbor in graph[node]:
                 # removing this node means the parent has 1 less child
-                neighbors[neighbor] -= 1
-                if neighbors[neighbor] == 1:
+                degree[neighbor] -= 1
+                if degree[neighbor] == 1:
                     new_leaves.append(neighbor)
 
         done += len(new_leaves)
