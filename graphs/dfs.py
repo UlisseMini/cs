@@ -28,25 +28,22 @@ for node in dfs_recursive(graph, 0):
 
 
 def dfs_iterative(graph, start):
-    path = [start]
-
+    stack = [start]
     visited = [False] * len(graph)
 
-    while path != []:
-        curr = path[-1]
-        if not visited[curr]:
-            yield curr
-            visited[curr] = True
+    while stack != []:
+        curr = stack.pop()
+        if visited[curr]:
+            continue
 
-        deeper = False
-        for neighbor in graph[curr]:
+        yield curr
+        visited[curr] = True
+
+        # Reverse since we pop from the end of the stack, meaning before we visit
+        # another neighbor is pushed, but we should visit the first guy first.
+        for neighbor in reversed(graph[curr]):
             if not visited[neighbor]:
-                path.append(neighbor)
-                deeper = True
-                break
-
-        if not deeper:
-            path = path[:-1]
+                stack.append(neighbor)
 
 
 print('\niterative')
