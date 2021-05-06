@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
-#include "memdebug.h"
+// #include "memdebug.h"
 
 // This is written in a terrible heap-allocate everything style to practice my C.
 
